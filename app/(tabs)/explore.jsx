@@ -152,30 +152,34 @@ const FactList = () => {
             </ScrollView>
 
             {filteredFacts.length > 0 ? (
-              <Animated.FlatList
-                data={filteredFacts}
-                keyExtractor={(item) => item.id}
-                renderItem={renderFact}
-                onScroll={Animated.event(
-                  [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-                  { useNativeDriver: false }
-                )}
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={{ paddingBottom: 450 }}
-                // Implementing the refresh control for pull-to-refresh
-                refreshControl={
-                  <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-                }
-              />
+              <View className = 'h-[700px]'>
+                <Animated.FlatList
+                  data={filteredFacts}
+                  keyExtractor={(item) => item.id}
+                  renderItem={renderFact}
+                  onScroll={Animated.event(
+                    [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+                    { useNativeDriver: false }
+                  )}
+                  showsVerticalScrollIndicator={false}
+                  contentContainerStyle={{ paddingBottom: 450 }}
+                  style={{ flexGrow: 1 }}
+                  // Implementing the refresh control for pull-to-refresh
+                  refreshControl={
+                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                  }
+                />
+
+              </View>
             ) : (
               <View className="flex-1 items-center justify-center">
                 <Text className="text-xl text-gray-500">No facts found</Text>
               </View>
             )}
+
           </>
         )}
       </View>
-      <Text className='text-2xl'></Text>
     </SafeAreaView>
   );
 };

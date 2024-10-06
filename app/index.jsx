@@ -1,3 +1,9 @@
+import { NativeWindStyleSheet } from "nativewind";
+
+NativeWindStyleSheet.setOutput({
+  default: "native",
+});
+
 
 import {StyleSheet, Text, View, useWindowDimensions} from 'react-native';
 import React from 'react';

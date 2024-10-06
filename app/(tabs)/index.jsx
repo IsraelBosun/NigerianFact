@@ -80,7 +80,7 @@ export default function Index() {
 
   // Render categories in a MasonryFlashList
   return (
-    <View className="bg--300">
+    <View className="">
       <SafeAreaView className="mx-3">
         {/* Header */}
         <View className="flex-row items-end justify-between mt-4 mb-3">
@@ -136,6 +136,7 @@ export default function Index() {
           )}
         </View>
         <Text className='text-2xl'></Text>
+        <Text className='text-3xl'>Hello world</Text>
       </SafeAreaView>
     </View>
   );
