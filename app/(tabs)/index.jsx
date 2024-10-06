@@ -93,50 +93,52 @@ export default function Index() {
         </View>
 
         {/* Display categories in MasonryFlashList */}
-        <View className="w-100 flex-row justify-center items-center">
+        <View className="w-100 h-100 flex-row justify-center items-center">
           {loading ? (
             <View className='text-center flex items-center justify-center'>
               <ActivityIndicator size="large" color="green"  />
             </View>
           ) : (
-            <MasonryFlashList
-              data={categories} // Use categories with facts
-              numColumns={2}
-              refreshControl={
-                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-              } // Add pull-to-refresh control
-              renderItem={({ item, index }) => (
-                <Pressable
-                  className="mb-5 flex-row mx-2 shadow-xl"
-                  onPress={() => handleCategoryPress(item)} // Pass category and its facts to the next screen
-                >
-                  {/* Display Category Image */}
-                  <Image
-                    source={localImages[item.name]} // Use local images based on category name
-                    style={{
-                      width: '100%',
-                      height: index % 2 === 0 ? 170 : 250, // Dynamic height for Masonry layout
-                      borderRadius: 10,
-                    }}
-                    resizeMode="cover"
-                  />
-                  {/* Category Name */}
-                  <Text className="font-bold text-[16px] text-white absolute bottom-4 left-2">
-                    {item.name}
-                  </Text>
-                </Pressable>
-              )}
-              estimatedItemSize={200}
-              showsVerticalScrollIndicator={false}
-              contentContainerStyle={{
-                paddingHorizontal: 0, // Space between container edges and items
-                paddingBottom: 150, // Extra padding at the bottom of the list
-              }}
-            />
+            <View className = ' h-[500px] w-full'>
+              <MasonryFlashList
+                data={categories} // Use categories with facts
+                numColumns={2}
+                refreshControl={
+                  <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                } // Add pull-to-refresh control
+                renderItem={({ item, index }) => (
+                  <Pressable
+                    className="mb-5 flex-row mx-2"
+                    onPress={() => handleCategoryPress(item)} // Pass category and its facts to the next screen
+                  >
+                    {/* Display Category Image */}
+                    <Image
+                      source={localImages[item.name]} // Use local images based on category name
+                      style={{
+                        width: '100%',
+                        height: index % 2 === 0 ? 150 : 200, // Dynamic height for Masonry layout
+                        borderRadius: 10,
+                      }}
+                      resizeMode="cover"
+                    />
+                    {/* Category Name */}
+                    <Text className="font-bold text-[16px] text-white absolute bottom-4 left-2">
+                      {item.name}
+                    </Text>
+                  </Pressable>
+                )}
+                estimatedItemSize={200}
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{
+                  paddingHorizontal: 0, // Space between container edges and items
+                  paddingBottom: 150, // Extra padding at the bottom of the list
+                }}
+              />
+
+            </View>
           )}
         </View>
         <Text className='text-2xl'></Text>
-        <Text className='text-3xl'>Hello world</Text>
       </SafeAreaView>
     </View>
   );

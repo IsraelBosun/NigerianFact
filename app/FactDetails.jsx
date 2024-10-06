@@ -32,9 +32,9 @@ export default function FactDetails() {
       </View>
       <View className = 'mx-4'>
         <Text className= 'text-black text-2xl font-bold  mt-4'>{item.title}</Text>
-        <View className = 'border mt-2 border-neutral-500'></View>
-      <ScrollView contentContainerStyle={{paddingBottom: 250}} showsVerticalScrollIndicator={false}>
-        <Text className = 'leading-6 mt-3 text-[17px] text-green-700'>{item.longDescription}</Text>
+        <View className = 'border mt-2 border-black'></View>
+      <ScrollView contentContainerStyle={{paddingBottom: 250}} showsVerticalScrollIndicator={false} className = 'h-[500px]'>
+        <Text className = 'leading-6 mt-3 text-[17px]'>{item.longDescription}</Text>
       </ScrollView>
       </View>
       <Text className='text-xl'></Text>

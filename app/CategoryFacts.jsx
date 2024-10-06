@@ -49,14 +49,14 @@ export default function CategoryFacts() {
       <Animated.ScrollView
         contentContainerStyle={{ paddingTop: 1, paddingBottom: 250 }}
         showsVerticalScrollIndicator={false}
-        className="mt-5"
+        className="mt-5 h-[700px]"
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { y: scrollY } } }],
           { useNativeDriver: false }
         )}
       >
         {facts.map((item, id) => (
-          <View key={id}>
+          <View key={id} className = ''>
             <View className="bg-[#E2F3EA] rounded-2xl mb-4 mx-4 shadow-2xl border border-green-300">
               {item.image && (
                 <Image
