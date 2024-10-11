@@ -99,7 +99,7 @@ export default function Index() {
               <ActivityIndicator size="large" color="green"  />
             </View>
           ) : (
-            <View className = ' h-[500px] w-full'>
+            <View className = ' h-[600px] w-full'>
               <MasonryFlashList
                 data={categories} // Use categories with facts
                 numColumns={2}
