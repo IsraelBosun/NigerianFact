@@ -1,4 +1,44 @@
 import { NativeWindStyleSheet } from "nativewind";
+// import React from 'react';
+// import { View, Button, Text, StyleSheet } from 'react-native';
+// import { auth } from '../components/firebase.js'; // adjust the import based on your project structure
+// import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+
+// const SignInScreen = () => {
+//   const handleSignIn = async () => {
+//     try {
+//       const provider = new GoogleAuthProvider();
+//       // Use the signInWithPopup for web and signInWithCredential for mobile
+//       const result = await auth.signInWithCredential(provider); // This works for web
+//       // For mobile, you may want to implement an alternative
+//       console.log('User signed in:', result.user);
+//     } catch (error) {
+//       console.error('Error signing in:', error);
+//     }
+//   };
+
+//   return (
+//     <View style={styles.container}>
+//       <Text style={styles.title}>Welcome to My App</Text>
+//       <Button title="Sign in with Google" onPress={handleSignIn} />
+//     </View>
+//   );
+// };
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//   },
+//   title: {
+//     fontSize: 24,
+//     marginBottom: 20,
+//   },
+// });
+
+// export default SignInScreen;
+
 
 NativeWindStyleSheet.setOutput({
   default: "native",
@@ -254,6 +294,8 @@ NativeWindStyleSheet.setOutput({
 
 
 
+
+
 import {StyleSheet, Text, View, useWindowDimensions} from 'react-native';
 import React from 'react';
 import Animated, {
@@ -424,3 +466,5 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
 });
+
+
