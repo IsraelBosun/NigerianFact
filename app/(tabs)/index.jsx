@@ -7,6 +7,9 @@ import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../components/firebase'; // Import your Firebase Firestore setup
+import { useTheme } from '@react-navigation/native';
+import { color } from 'react-native-elements/dist/helpers';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const localImages = {
   Crime: require('../../assets/pictures/crime.png'),
@@ -26,6 +29,8 @@ export default function Index() {
   const [refreshing, setRefreshing] = useState(false); // State for pull-to-refresh
 
   const navigation = useNavigation(); // Navigation hook for screen navigation
+  const { colors } = useTheme();
+
 
   // Fetch categories and facts from Firestore
   const fetchCategories = async () => {
@@ -85,58 +90,83 @@ export default function Index() {
         {/* Header */}
         <View className="flex-row items-end justify-between mt-4 mb-3">
           <TouchableOpacity>
-            <FontAwesome name="navicon" size={29} color="green" />
+            {/* <FontAwesome name="navicon" size={29} color="green" /> */}
           </TouchableOpacity>
           <TouchableOpacity>
-            <FontAwesome6 name="circle-user" size={29} color="black" />
+            <FontAwesome6 name="circle-user" size={29} style={{ color: colors.shadow }} />
           </TouchableOpacity>
         </View>
 
         {/* Display categories in MasonryFlashList */}
-        <View className="w-100 flex-row justify-center items-center">
+        <View className="w-100 h-100 flex-row justify-center items-center">
           {loading ? (
             <View className='text-center flex items-center justify-center'>
               <ActivityIndicator size="large" color="green"  />
             </View>
           ) : (
-            <MasonryFlashList
-              data={categories} // Use categories with facts
-              numColumns={2}
-              refreshControl={
-                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-              } // Add pull-to-refresh control
-              renderItem={({ item, index }) => (
-                <Pressable
-                  className="mb-5 flex-row mx-2 shadow-xl"
-                  onPress={() => handleCategoryPress(item)} // Pass category and its facts to the next screen
-                >
-                  {/* Display Category Image */}
-                  <Image
-                    source={localImages[item.name]} // Use local images based on category name
+            <View className = ' h-[600px] w-full'>
+              <MasonryFlashList
+                data={categories} // Use categories with facts
+                numColumns={2}
+                refreshControl={
+                  <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                } // Add pull-to-refresh control
+                renderItem={({ item, index }) => (
+                  <Pressable
+                    className="mb-5 flex-row mx-2 "
+                    onPress={() => handleCategoryPress(item)} // Pass category and its facts to the next screen
                     style={{
-                      width: '100%',
-                      height: index % 2 === 0 ? 170 : 250, // Dynamic height for Masonry layout
-                      borderRadius: 10,
+                      backgroundColor: colors.primary,
+                      borderRadius: 16, // Equivalent to 'rounded-2xl'
+                      marginBottom: 16, // Equivalent to 'mb-4'
+                      marginHorizontal: 16, // Equivalent to 'mx-4'
+                      shadowColor: colors.shadow, // Shadow color for iOS
+                      shadowOffset: {
+                        width: 0, // Horizontal offset
+                        height: 2, // Vertical offset
+                      },
+                      shadowOpacity: 0.25, // Shadow opacity
+                      shadowRadius: 3.5, // Shadow blur radius
+                      elevation: 4, // Elevation for Android
                     }}
-                    resizeMode="cover"
-                  />
-                  {/* Category Name */}
-                  <Text className="font-bold text-[16px] text-white absolute bottom-4 left-2">
-                    {item.name}
-                  </Text>
-                </Pressable>
-              )}
-              estimatedItemSize={200}
-              showsVerticalScrollIndicator={false}
-              contentContainerStyle={{
-                paddingHorizontal: 0, // Space between container edges and items
-                paddingBottom: 150, // Extra padding at the bottom of the list
-              }}
-            />
+                  >
+                    {/* Display Category Image */}
+                    <Image
+                      source={localImages[item.name]} // Use local images based on category name
+                      style={{
+                        width: '100%',
+                        height: index % 2 === 0 ? 150 : 200, // Dynamic height for Masonry layout
+                        borderRadius: 10,
+                        borderColor : 'white'
+                      }}
+                      resizeMode="cover"
+                      className = 'border-white'
+                    />
+                    {/* <LinearGradient
+                      colors={["transparent", "rgba(0,0,0,0.9)"]}
+                      style={{width: 152, height: 60}}
+                      start={{x: 0.5, y: 0}}
+                      end={{x: 0.5, y: 1}}
+                      className="absolute bottom-0 rounded-b-[9px]"
+                    /> */}
+                    {/* Category Name */}
+                    <Text className="font-bold  text-white absolute bottom-4 left-2">
+                      {item.name}
+                    </Text>
+                  </Pressable>
+                )}
+                estimatedItemSize={200}
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{
+                  paddingHorizontal: 0, // Space between container edges and items
+                  paddingBottom: 150, // Extra padding at the bottom of the list
+                }}
+              />
+
+            </View>
           )}
         </View>
         <Text className='text-2xl'></Text>
-        <Text className='text-3xl'>Hello world</Text>
       </SafeAreaView>
     </View>
   );

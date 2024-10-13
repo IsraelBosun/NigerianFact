@@ -2,12 +2,18 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React from 'react'
 import { AntDesign, Feather } from '@expo/vector-icons';
 import TabBarButton from './TabBarButton';
+import { useTheme } from '@react-navigation/native';
+
 
 const TabBar = ({ state, descriptors, navigation }) => {
 
-
+    const { colors } = useTheme();
     const primaryColor = '#15803d';
-    const greyColor = '#737373';
+    const greyColor = 'white';
+
+
+    // const greyColor = '#737373';
+
   return (
     <View style={styles.tabbar}>
       {state.routes.map((route, index) => {
@@ -91,7 +97,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: 'white',
+        backgroundColor: 'black',
         marginHorizontal: 20,
         paddingVertical: 15,
         borderRadius: 25,
