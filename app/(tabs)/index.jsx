@@ -92,7 +92,7 @@ export default function Index() {
           <TouchableOpacity>
             {/* <FontAwesome name="navicon" size={29} color="green" /> */}
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress = {()=> navigation.navigate('Auth')}>
             <FontAwesome6 name="circle-user" size={29} style={{ color: colors.shadow }} />
           </TouchableOpacity>
         </View>

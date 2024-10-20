@@ -297,7 +297,12 @@ NativeWindStyleSheet.setOutput({
 
 
 import {StyleSheet, Text, View, useWindowDimensions} from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native'; // Make sure to use the navigation prop
+import * as Notifications from 'expo-notifications';
+import messaging from '@react-native-firebase/messaging'; // Ensure you've installed and imported this correctly
+
+
 import Animated, {
   useSharedValue,
   useAnimatedScrollHandler,
@@ -385,6 +390,66 @@ const index = () => {
         transform: [{translateY: translateYAnimation}],
       };
     });
+
+
+    const navigation = useNavigation();
+
+    useEffect(() => {
+      const requestUserPermission = async () => {
+        const authStatus = await messaging().requestPermission();
+        const enabled =
+          authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+          authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+  
+        if (enabled) {
+          console.log("Authorization status:", authStatus);
+          const token = await messaging().getToken();
+          console.log(token);
+          // Save token to your backend or state if needed
+        } else {
+          console.log('Permission not granted', authStatus);
+        }
+      };
+  
+      // Call the requestUserPermission function
+      requestUserPermission();
+  
+      // Check whether an initial notification is available
+      messaging()
+        .getInitialNotification()
+        .then((remoteMessage) => {
+          if (remoteMessage) {
+            console.log(
+              'Notification caused app to open from quit state',
+              remoteMessage.notification
+            );
+          }
+        });
+  
+      // Handle notifications when the app is opened from the background
+      messaging().onNotificationOpenedApp((remoteMessage) => {
+        console.log(
+          'Notification caused app to open from background state',
+          remoteMessage.notification
+        );
+      });
+  
+      // Register background handler
+      messaging().setBackgroundMessageHandler(async (remoteMessage) => {
+        console.log('Message handled in the background', remoteMessage);
+      });
+  
+      // Listen for messages when the app is in the foreground
+      const unsubscribe = messaging().onMessage(async (remoteMessage) => {
+        Alert.alert('A new FCM Message arrived', JSON.stringify(remoteMessage));
+      });
+  
+      // Cleanup function to unsubscribe from the listener
+      return () => {
+        unsubscribe(); // Unsubscribe when the component unmounts
+      };
+    }, []); // Run effect once when the component mounts
+  
     return (
       <View style={[styles.itemContainer, {width: SCREEN_WIDTH}]}>
         <Animated.Image source={item.image} style={imageAnimationStyle} />

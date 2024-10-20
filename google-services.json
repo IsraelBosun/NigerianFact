@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "502673901389",
+    "project_id": "native-facts",
+    "storage_bucket": "native-facts.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502673901389:android:ec6ec1704f4ebe68745904",
+        "android_client_info": {
+          "package_name": "com.israelbosun.factos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "502673901389-8mukgs4jh4sbp8ufa8smlf44jv0th89u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsa-O9dCHS0V3m6KMakBfJKoPCSbzQyNg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "502673901389-8mukgs4jh4sbp8ufa8smlf44jv0th89u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

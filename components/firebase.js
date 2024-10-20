@@ -5,6 +5,8 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore} from 'firebase/firestore'
 import { getStorage } from "firebase/storage";
+import 'firebase/messaging';
+
 import { initializeAuth, 
   // @ts-ignore
   getReactNativePersistence } from 'firebase/auth';
@@ -28,6 +30,7 @@ const firebaseConfig = {
   appId: "1:502673901389:web:917b0330e3ee12d4745904",
   measurementId: "G-WLHPZPGNFZ"
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
